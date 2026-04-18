@@ -19,14 +19,20 @@ const Sidebar = () => {
         }
     }, []);
 
+    const getOverviewPath = () => {
+        if (userRole === "teacher") return "/teacher-dashboard";
+        if (userRole === "admin") return "/admin-dashboard";
+        return "/student-dashboard";
+    };
+
     const allMenuItems = [
-        { path: "/dashboard", name: "Overview", icon: LayoutDashboard },
+        { path: getOverviewPath(), name: "Overview", icon: LayoutDashboard },
         { path: "/academic", name: "Academics", icon: GraduationCap },
         { path: "/wellness", name: "Wellness", icon: Activity },
     ];
 
     const menuItems = userRole === 'teacher'
-        ? allMenuItems.filter(item => item.path === "/dashboard")
+        ? allMenuItems.filter(item => item.path === getOverviewPath())
         : allMenuItems;
 
     const handleLogout = () => {
