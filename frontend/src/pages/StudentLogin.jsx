@@ -1,27 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { User, Lock, ArrowRight, GraduationCap, BookOpen, Mail } from "lucide-react";
+import { Lock, ArrowRight, BookOpen, Mail } from "lucide-react";
 
-const Login = () => {
+const StudentLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
 
-  // Get role from URL query params (default to student)
-  const searchParams = new URLSearchParams(location.search);
-  const role = searchParams.get("role") || "student";
+  const role = "student";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const res = await axios.post("https://academic-wellness-performance-platform.onrender.com/api/auth/login", {
         email,
         password,
       });
 
-      // Verify if the logged-in user matches the selected role intent
       if (res.data.user.role !== role) {
         alert(`Access Denied: This account is not registered as a ${role}.`);
         return;
@@ -30,12 +26,7 @@ const Login = () => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      // Navigate based on role (Unified dashboard currently handles both, but good for future proofing)
-      if (res.data.user.role === 'teacher') {
-        navigate("/dashboard");
-      } else {
-        navigate("/dashboard");
-      }
+      navigate("/student-dashboard");
     } catch (error) {
       alert("Invalid credentials");
     }
@@ -44,19 +35,17 @@ const Login = () => {
   return (
     <div className="min-h-screen flex bg-white">
       {/* Left Side - Visual */}
-      <div className={`hidden lg:flex w-1/2 relative overflow-hidden items-center justify-center p-12 ${role === 'teacher' ? 'bg-violet-900' : 'bg-slate-900'}`}>
-        <div className={`absolute inset-0 bg-gradient-to-br ${role === 'teacher' ? 'from-violet-900 to-fuchsia-900' : 'from-slate-900 to-indigo-900'}`} />
+      <div className="hidden lg:flex w-1/2 relative overflow-hidden items-center justify-center p-12 bg-slate-900">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-indigo-900" />
         <div className="absolute top-0 right-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20" />
 
         <div className="relative z-10 text-white max-w-lg text-center">
           <div className="inline-flex p-4 rounded-2xl bg-white/10 backdrop-blur-sm mb-6 shadow-xl">
-            {role === 'teacher' ? <GraduationCap size={48} /> : <BookOpen size={48} />}
+            <BookOpen size={48} />
           </div>
-          <h1 className="text-5xl font-bold mb-6 leading-tight">{role === 'teacher' ? 'Educator Portal' : 'Student Portal'}</h1>
+          <h1 className="text-5xl font-bold mb-6 leading-tight">Student Portal</h1>
           <p className="text-slate-300 text-lg leading-relaxed">
-            {role === 'teacher'
-              ? 'Manage your classes and monitor student wellness with powerful insights.'
-              : 'Track your academic journey and wellness goals in one place.'}
+            Track your academic journey and wellness goals in one place.
           </p>
         </div>
       </div>
@@ -65,8 +54,8 @@ const Login = () => {
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16 bg-slate-50">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center lg:text-left">
-            <Link to="/" className="text-sm font-semibold text-indigo-600 hover:text-indigo-500 mb-4 inline-block">&larr; Change Role</Link>
-            <h2 className="text-3xl font-bold text-slate-900">{role === 'teacher' ? 'Teacher Login' : 'Student Login'}</h2>
+            <Link to="/" className="text-sm font-semibold text-indigo-600 hover:text-indigo-500 mb-4 inline-block">&larr; Back to Home</Link>
+            <h2 className="text-3xl font-bold text-slate-900">Student Login</h2>
             <p className="text-slate-500 mt-2">Welcome back! Please enter your details.</p>
           </div>
 
@@ -138,4 +127,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default StudentLogin;

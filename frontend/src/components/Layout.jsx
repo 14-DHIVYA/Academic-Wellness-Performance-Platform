@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
+import { X } from "lucide-react";
 // import Navbar from "../pages/Navbar"; // Navbar might be redundant with the new sidebar design, or we can keep it for mobile
 
 const Layout = ({ children }) => {

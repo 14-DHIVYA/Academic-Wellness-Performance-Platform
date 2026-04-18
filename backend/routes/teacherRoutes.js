@@ -4,21 +4,25 @@ const User = require("../models/User");
 const Academic = require("../models/Academic");
 const Wellness = require("../models/Wellness");
 
+const protect = require("../middleware/authMiddleware");
+
 // Middleware to check if user is a teacher
 const verifyTeacher = async (req, res, next) => {
-    // Assuming req.user is populated by auth middleware (which we need to make sure is used)
-    // For now, we'll need to import the auth middleware or ensure it's applied in server.js
-    // Let's assume we'll use a middleware that decodes the token and adds user to req
-
-    // TODO: Import auth middleware here or in server.js
-    next();
+    if (req.user && req.user.role === "teacher") {
+        next();
+    } else {
+        res.status(403).json({ message: "Not authorized as a teacher" });
+    }
 };
+
+router.use(protect);
+router.use(verifyTeacher);
 
 // GET all students with their data
 router.get("/students", async (req, res) => {
     try {
-        // 1. Find all users with role "student"
-        const students = await User.find({ role: "student" }).select("-password");
+        // 1. Find all users with role "student" and assigned to this teacher
+        const students = await User.find({ role: "student", assignedTeacher: req.user._id }).select("-password");
 
         // 2. For each student, fetch their latest academic and wellness data
         const studentData = await Promise.all(students.map(async (student) => {
@@ -55,9 +59,9 @@ router.get("/students/:studentId", async (req, res) => {
     try {
         const studentId = req.params.studentId;
 
-        const student = await User.findById(studentId).select("-password");
+        const student = await User.findOne({ _id: studentId, assignedTeacher: req.user._id }).select("-password");
         if (!student) {
-            return res.status(404).json({ message: "Student not found" });
+            return res.status(404).json({ message: "Student not found or not assigned to you" });
         }
 
         // Fetch all records

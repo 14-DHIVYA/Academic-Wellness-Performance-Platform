@@ -19,10 +19,12 @@ connectDB();
 
 // ROUTES
 app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api/academic", require("./routes/academicRoutes"));
 app.use("/api/wellness", require("./routes/wellnessRoutes"));
 app.use("/api/teacher", require("./routes/teacherRoutes"));
 app.use("/api/health", healthRoutes);
+app.use("/api/messages", require("./routes/messageRoutes"));
 
 // Test route
 app.get("/", (req, res) => {

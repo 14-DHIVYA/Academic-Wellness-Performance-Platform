@@ -34,10 +34,28 @@ body {
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.6);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 
   .btn-primary {
-    @apply bg-indigo-600 text-white hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 active:scale-95;
+    @apply bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 active:scale-95 flex items-center gap-2;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-indigo-600 px-6 py-3 rounded-full font-semibold border border-indigo-100 hover:bg-indigo-50 transition-all shadow-sm active:scale-95 flex items-center gap-2;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-slate-600 max-w-2xl mx-auto text-center mb-12;
   }
 }
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = "https://academic-wellness-performance-platform.onrender.com/api/auth";
 
 // Login
 export const loginUser = async (data) => {
@@ -19,7 +19,7 @@ export const registerUser = async (data) => {
 // WELLNESS APIs
 // ===============================
 
-const WELLNESS_URL = "http://localhost:5000/api/wellness";
+const WELLNESS_URL = "https://academic-wellness-performance-platform.onrender.com/api/wellness";
 
 // GET ALL
 export const getWellnessItems = async (token) => {
@@ -52,7 +52,7 @@ export const deleteWellnessItem = async (id, token) => {
 };
 
 export const getWellnessSummary = async (token) => {
-  const res = await fetch("http://localhost:5000/api/wellness/summary", {
+  const res = await fetch("https://academic-wellness-performance-platform.onrender.com/api/wellness/summary", {
     headers: {
       Authorization: `Bearer ${token}`,
     },
