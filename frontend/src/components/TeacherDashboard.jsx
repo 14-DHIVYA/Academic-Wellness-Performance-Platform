@@ -22,13 +22,13 @@ const TeacherDashboard = ({ user }) => {
             const token = localStorage.getItem("token");
             
             // Fetch Students
-            const studentRes = await axios.get("https://academic-wellness-performance-platform.onrender.com/api/teacher/students", {
+            const studentRes = await axios.get("https://academic-wellness-performance-platform-3.onrender.com/api/teacher/students", {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setStudents(studentRes.data);
 
             // Fetch Messages
-            const msgRes = await axios.get("https://academic-wellness-performance-platform.onrender.com/api/messages", {
+            const msgRes = await axios.get("https://academic-wellness-performance-platform-3.onrender.com/api/messages", {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMessages(msgRes.data);
@@ -48,7 +48,7 @@ const TeacherDashboard = ({ user }) => {
     const markMessageRead = async (msgId) => {
         try {
             const token = localStorage.getItem("token");
-            await axios.put(`https://academic-wellness-performance-platform.onrender.com/api/messages/${msgId}/read`, {}, {
+            await axios.put(`https://academic-wellness-performance-platform-3.onrender.com/api/messages/${msgId}/read`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMessages(messages.map(m => m._id === msgId ? { ...m, isRead: true } : m));
@@ -68,7 +68,7 @@ const TeacherDashboard = ({ user }) => {
         setReplyStatus(prev => ({...prev, [msg._id]: 'sending'}));
         try {
             const token = localStorage.getItem("token");
-            await axios.post("https://academic-wellness-performance-platform.onrender.com/api/messages/send", {
+            await axios.post("https://academic-wellness-performance-platform-3.onrender.com/api/messages/send", {
                 targetRole: 'student',
                 receiverId: msg.senderId._id,
                 content: `Re: ${msg.content.substring(0, 20)}... \n\nTeacher Reply: ${text}`
@@ -88,7 +88,7 @@ const TeacherDashboard = ({ user }) => {
     const handleViewDetails = async (studentId) => {
         try {
             const token = localStorage.getItem("token");
-            const res = await axios.get(`https://academic-wellness-performance-platform.onrender.com/api/teacher/students/${studentId}`, {
+            const res = await axios.get(`https://academic-wellness-performance-platform-3.onrender.com/api/teacher/students/${studentId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setSelectedStudent(res.data);

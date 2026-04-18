@@ -9,7 +9,7 @@ const BlockedUsers = () => {
     const fetchBlocked = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('https://academic-wellness-performance-platform.onrender.com/api/admin/blocked-users', {
+        const response = await fetch('https://academic-wellness-performance-platform-3.onrender.com/api/admin/blocked-users', {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (response.ok) {

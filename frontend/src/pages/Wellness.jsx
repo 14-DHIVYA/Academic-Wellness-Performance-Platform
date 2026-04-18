@@ -56,7 +56,7 @@ const Wellness = () => {
     const fetchData = async () => {
         try {
             const token = localStorage.getItem("token");
-            const res = await axios.get("https://academic-wellness-performance-platform.onrender.com/api/wellness", {
+            const res = await axios.get("https://academic-wellness-performance-platform-3.onrender.com/api/wellness", {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setActivities(res.data.data); // Adjust based on API structure
@@ -79,7 +79,7 @@ const Wellness = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem("token");
-            await axios.post("https://academic-wellness-performance-platform.onrender.com/api/wellness", formData, {
+            await axios.post("https://academic-wellness-performance-platform-3.onrender.com/api/wellness", formData, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             fetchData();
@@ -98,7 +98,7 @@ const Wellness = () => {
     const handleDelete = async (id) => {
         try {
             const token = localStorage.getItem("token");
-            await axios.delete(`https://academic-wellness-performance-platform.onrender.com/api/wellness/${id}`, {
+            await axios.delete(`https://academic-wellness-performance-platform-3.onrender.com/api/wellness/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             fetchData();

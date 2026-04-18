@@ -13,7 +13,7 @@ const TeacherLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://academic-wellness-performance-platform.onrender.com/api/auth/login", {
+      const res = await axios.post("https://academic-wellness-performance-platform-3.onrender.com/api/auth/login", {
         email,
         password,
       });

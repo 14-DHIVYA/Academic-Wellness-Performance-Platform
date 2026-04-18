@@ -13,7 +13,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://academic-wellness-performance-platform.onrender.com/api/auth/register", {
+      await axios.post("https://academic-wellness-performance-platform-3.onrender.com/api/auth/register", {
         name,
         email,
         password,

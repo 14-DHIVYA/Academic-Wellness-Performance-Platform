@@ -21,7 +21,7 @@ const AdminLogin = () => {
     setError("");
 
     try {
-      const response = await fetch("https://academic-wellness-performance-platform.onrender.com/api/auth/admin-login", {
+      const response = await fetch("https://academic-wellness-performance-platform-3.onrender.com/api/auth/admin-login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

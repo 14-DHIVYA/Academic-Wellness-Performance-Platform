@@ -9,7 +9,7 @@ const LoginActivity = () => {
     const fetchActivities = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('https://academic-wellness-performance-platform.onrender.com/api/admin/login-activity', {
+        const response = await fetch('https://academic-wellness-performance-platform-3.onrender.com/api/admin/login-activity', {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (response.ok) {

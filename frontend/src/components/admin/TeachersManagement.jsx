@@ -16,7 +16,7 @@ const TeachersManagement = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await fetch('https://academic-wellness-performance-platform.onrender.com/api/admin/teachers', {
+      const response = await fetch('https://academic-wellness-performance-platform-3.onrender.com/api/admin/teachers', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
@@ -41,7 +41,7 @@ const TeachersManagement = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://academic-wellness-performance-platform.onrender.com/api/admin/teachers', {
+      const response = await fetch('https://academic-wellness-performance-platform-3.onrender.com/api/admin/teachers', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const TeachersManagement = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://academic-wellness-performance-platform.onrender.com/api/admin/teachers/${id}`, {
+      const response = await fetch(`https://academic-wellness-performance-platform-3.onrender.com/api/admin/teachers/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

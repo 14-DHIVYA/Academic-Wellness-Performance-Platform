@@ -112,7 +112,7 @@ const Dashboard = () => {
       setDoubtStatus('sending');
       try {
           const token = localStorage.getItem("token");
-          await axios.post("https://academic-wellness-performance-platform.onrender.com/api/messages/send", {
+          await axios.post("https://academic-wellness-performance-platform-3.onrender.com/api/messages/send", {
               targetRole: 'teacher',
               content: doubtText
           }, {
@@ -121,7 +121,7 @@ const Dashboard = () => {
           setDoubtStatus('sent');
           setDoubtText('');
           // Refresh messages after sending
-          const msgRes = await axios.get("https://academic-wellness-performance-platform.onrender.com/api/messages", {
+          const msgRes = await axios.get("https://academic-wellness-performance-platform-3.onrender.com/api/messages", {
               headers: { Authorization: `Bearer ${token}` }
           });
           setMessages(msgRes.data);
@@ -146,13 +146,13 @@ const Dashboard = () => {
         const token = localStorage.getItem("token");
         // Only fetch student stats if user is a student
         if (JSON.parse(localStorage.getItem("user"))?.role !== 'teacher') {
-          const wellnessRes = await axios.get("https://academic-wellness-performance-platform.onrender.com/api/wellness/summary", {
+          const wellnessRes = await axios.get("https://academic-wellness-performance-platform-3.onrender.com/api/wellness/summary", {
             headers: { Authorization: `Bearer ${token}` }
           });
-          const academicRes = await axios.get("https://academic-wellness-performance-platform.onrender.com/api/academic", {
+          const academicRes = await axios.get("https://academic-wellness-performance-platform-3.onrender.com/api/academic", {
             headers: { Authorization: `Bearer ${token}` }
           });
-          const msgRes = await axios.get("https://academic-wellness-performance-platform.onrender.com/api/messages", {
+          const msgRes = await axios.get("https://academic-wellness-performance-platform-3.onrender.com/api/messages", {
             headers: { Authorization: `Bearer ${token}` }
           });
           setMessages(msgRes.data);

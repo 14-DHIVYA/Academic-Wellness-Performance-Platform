@@ -36,13 +36,13 @@ const Academic = () => {
             const token = localStorage.getItem("token");
             
             // Fetch student's academic records
-            const res = await axios.get("https://academic-wellness-performance-platform.onrender.com/api/academic", {
+            const res = await axios.get("https://academic-wellness-performance-platform-3.onrender.com/api/academic", {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setSubjects(res.data);
             
             // Fetch global average and highest marks
-            const avgRes = await axios.get("https://academic-wellness-performance-platform.onrender.com/api/academic/average", {
+            const avgRes = await axios.get("https://academic-wellness-performance-platform-3.onrender.com/api/academic/average", {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const globalMarks = avgRes.data.averageMarks;
@@ -72,7 +72,7 @@ const Academic = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem("token");
-            await axios.post("https://academic-wellness-performance-platform.onrender.com/api/academic/add", formData, {
+            await axios.post("https://academic-wellness-performance-platform-3.onrender.com/api/academic/add", formData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             fetchData();
@@ -87,7 +87,7 @@ const Academic = () => {
         if (!window.confirm("Are you sure you want to delete this subject?")) return;
         try {
             const token = localStorage.getItem("token");
-            await axios.delete(`https://academic-wellness-performance-platform.onrender.com/api/academic/${id}`, {
+            await axios.delete(`https://academic-wellness-performance-platform-3.onrender.com/api/academic/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             fetchData();

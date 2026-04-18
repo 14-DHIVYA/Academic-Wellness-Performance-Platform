@@ -19,10 +19,10 @@ const AssignStudents = () => {
       const token = localStorage.getItem('token');
       
       const [techRes, stuRes] = await Promise.all([
-        fetch('https://academic-wellness-performance-platform.onrender.com/api/admin/teachers', {
+        fetch('https://academic-wellness-performance-platform-3.onrender.com/api/admin/teachers', {
           headers: { Authorization: `Bearer ${token}` }
         }),
-        fetch('https://academic-wellness-performance-platform.onrender.com/api/admin/students', {
+        fetch('https://academic-wellness-performance-platform-3.onrender.com/api/admin/students', {
           headers: { Authorization: `Bearer ${token}` }
         })
       ]);
@@ -60,7 +60,7 @@ const AssignStudents = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://academic-wellness-performance-platform.onrender.com/api/admin/assign', {
+      const response = await fetch('https://academic-wellness-performance-platform-3.onrender.com/api/admin/assign', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
