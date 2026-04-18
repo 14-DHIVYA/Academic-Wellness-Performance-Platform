@@ -63,3 +63,5 @@ A professional, interactive, and user-friendly dashboard-based web application w
 2. Register a new account.
 3. Login to access the dashboard.
 4. Use the sidebar to navigate between Dashboard, Academic, and Wellness modules.
+"# Academic-Wellness-Performance-Platform" 
+"# Academic-Wellness-Performance-Platform" 
